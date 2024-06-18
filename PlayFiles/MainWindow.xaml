@@ -13,7 +13,15 @@
             Click="Upload"
             Content="Upload a file" Height="42"
         />
-        <StackPanel x:Name="FilesLoadedPanel" Orientation="Vertical"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel x:Name="FilesLoadedPanel">
+                </StackPanel>
+            </Grid>
+        
         </StackPanel>
     </Grid>
 </Window>

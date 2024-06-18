@@ -22,9 +22,11 @@ namespace PlayFiles
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow Instance { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
         }
         public void Upload(object sender, RoutedEventArgs e)
         {
@@ -34,10 +36,18 @@ namespace PlayFiles
             if (response == true)
             {
                 FileInfo fileInfo = new FileInfo(openFileDialog.FileName);
-                ConfirmFile newWindow = new ConfirmFile(fileInfo);
+                ConfirmFile newWindow = new ConfirmFile(fileInfo,this);
                 newWindow.ShowDialog();
             }
 
+        }
+        public void UpdateButtons()
+        {
+            FilesLoadedPanel.Children.Clear();
+            foreach (var button in FileInfo.filesLoaded)
+            {
+                FilesLoadedPanel.Children.Add(new FileButton(button) { Margin = new Thickness(5) });
+            }
         }
     }
 }

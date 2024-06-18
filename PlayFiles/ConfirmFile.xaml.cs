@@ -22,9 +22,16 @@ namespace PlayFiles
     public partial class ConfirmFile : Window
     {
         Logic.FileInfo FileInfo;
-        public ConfirmFile(Logic.FileInfo fileInfo)
+        MainWindow window;
+        public ConfirmFile(Logic.FileInfo fileInfo,MainWindow window)
         {
             InitializeComponent();
+            this.FileInfo = fileInfo;
+            this.window = window;
+
+            FilePath.Text = fileInfo.Path;
+            FileName.Text = fileInfo.Name;
+            //SecondsComboBox.SelectedValue = "00";
         }
         public void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -32,7 +39,11 @@ namespace PlayFiles
         }
         public void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
-            Logic.FileInfo.filesLoaded.Add(FileInfo);
+            FileInfo.Path = FilePath.Text;
+            FileInfo.Name = FileName.Text;
+            if(!Logic.FileInfo.filesLoaded.Contains(FileInfo))
+                Logic.FileInfo.filesLoaded.Add(FileInfo);
+            window.UpdateButtons();
             Close();
         }
     }
