@@ -13,7 +13,7 @@ namespace PlayFiles.Logic
         public FileButton(FileInfo fileInfo)
         {
             this.fileInfo = fileInfo;
-            Content = fileInfo.Name;
+            Content = String.Format("{0} -> {1}",fileInfo.Name , fileInfo.activeTime.ToString("HH:mm:ss"));
         }
         protected override void OnClick()
         {

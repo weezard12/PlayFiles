@@ -41,6 +41,8 @@ namespace PlayFiles
         {
             FileInfo.Path = FilePath.Text;
             FileInfo.Name = FileName.Text;
+            FileInfo.activeTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, HoursComboBox.SelectedIndex, MinutesComboBox.SelectedIndex, SecondsComboBox.SelectedIndex);
+
             if(!Logic.FileInfo.filesLoaded.Contains(FileInfo))
                 Logic.FileInfo.filesLoaded.Add(FileInfo);
             window.UpdateButtons();

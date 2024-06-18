@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace PlayFiles.Logic
 
         public string Path { get; set; }
         public string Name { get; set; }
-        DateTime activeTime;
+        public DateTime activeTime;
         public FileInfo(string path)
         {
             this.Path = path;
@@ -35,6 +36,11 @@ namespace PlayFiles.Logic
                 i--;
             }
             return r;
+        }
+
+        public void PlayFile()
+        {
+            Process.Start(new ProcessStartInfo(Path));
         }
     }
 }

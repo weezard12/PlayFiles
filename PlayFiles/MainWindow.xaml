@@ -7,21 +7,33 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid Height="434" VerticalAlignment="Bottom">
-        <StackPanel>
-            <Button
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Button
             x:Name="UploadButton"
             Click="Upload"
-            Content="Upload a file" Height="42"
+            Content="Upload a file"
+            Grid.Row="0"
+            Margin="30"
+            
         />
-            <Grid>
+        <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="FilesLoadedPanel">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="CurrentTime" Text="Current Time: " Grid.Row="0"/>
+                <StackPanel x:Name="FilesLoadedPanel" Grid.Row="1">
                 </StackPanel>
             </Grid>
         
-        </StackPanel>
+        
     </Grid>
 </Window>
