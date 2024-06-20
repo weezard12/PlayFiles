@@ -1,1 +1,1 @@
-A WPF application for opening files, YouTube videos or websits on a spesiffic time.
+A WPF application for opening files, YouTube videos or websites on a specific time.
