@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MediaWindow - esc to exit" Height="450" Width="800">
-    <Grid>
-        <MediaElement x:Name="Media"/>
+    <Grid x:Name="MainGrid">
+        
     </Grid>
 </Window>

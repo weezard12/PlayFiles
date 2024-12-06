@@ -7,18 +7,29 @@ using System.Threading.Tasks;
 
 namespace PlayFiles.Logic
 {
+    public enum FileType
+    {
+        LOCAL,
+        MP4,
+        MP3,
+        YT,
+        WEB
+    }
     public class FileInfo
     {
         public static List<FileInfo> filesLoaded = new List<FileInfo>();
+        public FileType type = FileType.LOCAL;
 
         public string Path { get; set; }
         public string Name { get; set; }
         public DateTime activeTime;
-        public FileInfo(string path)
+
+
+        public FileInfo(string path, bool withDot = true)
         {
             this.Path = path;
-            Name = GetFileNameFromPath(path, true);
-            activeTime = DateTime.Now.AddHours(1);
+            Name = GetFileNameFromPath(path, withDot);
+            activeTime = DateTime.Now;
         }
         public static string GetFileNameFromPath(string path, bool withDot)
         {
@@ -30,7 +41,7 @@ namespace PlayFiles.Logic
                     i--;
                 i--;
             }
-            while(i != 0 && path[i] != '\\')
+            while(i != -1 && path[i] != '\\')
             {
                 r = path[i] + r;
                 i--;

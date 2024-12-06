@@ -1,6 +1,7 @@
 ﻿using PlayFiles.Logic;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,9 @@ namespace PlayFiles
 
             FilePath.Text = fileInfo.Path;
             FileName.Text = fileInfo.Name;
-            //SecondsComboBox.SelectedValue = "00";
+            HoursComboBox.SelectedIndex = fileInfo.activeTime.Hour;
+            MinutesComboBox.SelectedIndex = fileInfo.activeTime.Minute;
+            SecondsComboBox.SelectedIndex = fileInfo.activeTime.Second;
         }
         public void CancelButton_Click(object sender, RoutedEventArgs e)
         {

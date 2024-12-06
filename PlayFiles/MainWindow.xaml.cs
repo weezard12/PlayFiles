@@ -52,6 +52,18 @@ namespace PlayFiles
             }
 
         }
+        public void UploadFromYT(object sender, RoutedEventArgs e)
+        {
+            FileInfo fileInfo = new FileInfo("File From YouTube") {type = FileType.YT };
+            ConfirmFile newWindow = new ConfirmFile(fileInfo, this);
+            newWindow.ShowDialog();
+        }
+        public void UploadFromWEB(object sender, RoutedEventArgs e)
+        {
+            FileInfo fileInfo = new FileInfo("Web File") { type = FileType.WEB };
+            ConfirmFile newWindow = new ConfirmFile(fileInfo, this);
+            newWindow.ShowDialog();
+        }
         public void UpdateButtons()
         {
             FilesLoadedPanel.Children.Clear();
@@ -74,7 +86,7 @@ namespace PlayFiles
                         Dispatcher.Invoke(() =>
                         {
                             //dateTime.PlayFile();
-                            new MediaWindow(dateTime.Path).Show();
+                            new MediaWindow(dateTime).Show();
                         });
                     }
                 }
@@ -94,5 +106,6 @@ namespace PlayFiles
         {
             CurrentTime.Text = "Current Time: "+DateTime.Now.ToString("HH:mm:ss");
         }
+
     }
 }

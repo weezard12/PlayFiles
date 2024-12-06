@@ -9,17 +9,32 @@
     <Grid Height="434" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Button
             x:Name="UploadButton"
             Click="Upload"
-            Content="Upload a file"
+            Content="Upload local file"
             Grid.Row="0"
-            Margin="30"
+            Margin="20,30,20,30"
             
         />
-        <Grid Grid.Row="1">
+        <Button
+            x:Name="YTButton"
+            Click="UploadFromYT"
+            Content="Upload file from YouTube"
+            Grid.Row="1" Margin="20,0,20,60" Grid.RowSpan="2"
+        />
+        <Button
+            x:Name="WEBButton"
+            Click="UploadFromWEB"
+            Content="Upload web file"
+            Grid.Row="2"
+            Margin="20"
+        />
+        <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
