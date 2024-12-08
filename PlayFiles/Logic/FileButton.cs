@@ -9,7 +9,7 @@ namespace PlayFiles.Logic
 {
     internal class FileButton : Button
     {
-        FileInfo fileInfo;
+        public FileInfo fileInfo { get; private set; }
         public FileButton(FileInfo fileInfo)
         {
             this.fileInfo = fileInfo;
@@ -20,7 +20,6 @@ namespace PlayFiles.Logic
             base.OnClick();
             ConfirmFile newWindow = new ConfirmFile(fileInfo, MainWindow.Instance);
             newWindow.ShowDialog();
-
         }
     }
 }

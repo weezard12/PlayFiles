@@ -6,6 +6,20 @@
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
+	
+	<PropertyGroup>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+		<ApplicationIcon>icon256.ico</ApplicationIcon>
+	</PropertyGroup>
+	
+	<ItemGroup>
+	  <Content Include="icon256.ico" />
+	</ItemGroup>
+	
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />

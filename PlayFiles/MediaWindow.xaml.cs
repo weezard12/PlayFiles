@@ -27,6 +27,16 @@ namespace PlayFiles
         public MediaWindow(FileInfo file)
         {
             InitializeComponent();
+
+            if (file.OpenAsFullscreen)
+            {
+                // Make the window full-screen
+                this.WindowState = WindowState.Maximized;
+                this.WindowStyle = WindowStyle.None;
+                this.ResizeMode = ResizeMode.NoResize;
+            }
+                
+
             if(file.type == FileType.LOCAL)
             {
                 MediaElement Media = new MediaElement();

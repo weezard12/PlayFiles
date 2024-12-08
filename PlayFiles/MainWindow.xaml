@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayFiles"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Play Files" Height="450" Width="800">
     <Grid Height="434" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

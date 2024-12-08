@@ -17,13 +17,14 @@ namespace PlayFiles.Logic
     }
     public class FileInfo
     {
-        public static List<FileInfo> filesLoaded = new List<FileInfo>();
+        public static List<FileInfo> FilesLoaded { get; set; } = new List<FileInfo>();
         public FileType type = FileType.LOCAL;
 
         public string Path { get; set; }
         public string Name { get; set; }
         public DateTime activeTime;
 
+        public bool OpenAsFullscreen { get; set; } = true;
 
         public FileInfo(string path, bool withDot = true)
         {

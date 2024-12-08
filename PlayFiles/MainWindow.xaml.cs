@@ -67,9 +67,9 @@ namespace PlayFiles
         public void UpdateButtons()
         {
             FilesLoadedPanel.Children.Clear();
-            foreach (var button in FileInfo.filesLoaded)
+            foreach (var button in FileInfo.FilesLoaded)
             {
-                FilesLoadedPanel.Children.Add(new FileButton(button) { Margin = new Thickness(5) });
+                FilesLoadedPanel.Children.Add(new FileButtonGrid( new FileButton(button) { Margin = new Thickness(5) } ));
             }
         }
 
@@ -78,7 +78,7 @@ namespace PlayFiles
             while (isRunning)
             {
                 DateTime currentTime = DateTime.Now;
-                foreach (var dateTime in FileInfo.filesLoaded)
+                foreach (var dateTime in FileInfo.FilesLoaded)
                 {
                     if (currentTime.ToString("yyyy-MM-dd HH:mm:ss") == dateTime.activeTime.ToString("yyyy-MM-dd HH:mm:ss"))
                     {

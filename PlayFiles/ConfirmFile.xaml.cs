@@ -1,9 +1,11 @@
-﻿using PlayFiles.Logic;
+﻿using Microsoft.Win32;
+using PlayFiles.Logic;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -27,14 +29,25 @@ namespace PlayFiles
         public ConfirmFile(Logic.FileInfo fileInfo,MainWindow window)
         {
             InitializeComponent();
+
+            this.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
             this.FileInfo = fileInfo;
             this.window = window;
+
+            if (FileInfo.type == FileType.YT || FileInfo.type == FileType.WEB)
+            {
+                FilePathText.Text = "Media URL:";
+                ChangePath.Visibility = Visibility.Collapsed;
+            }
 
             FilePath.Text = fileInfo.Path;
             FileName.Text = fileInfo.Name;
             HoursComboBox.SelectedIndex = fileInfo.activeTime.Hour;
             MinutesComboBox.SelectedIndex = fileInfo.activeTime.Minute;
             SecondsComboBox.SelectedIndex = fileInfo.activeTime.Second;
+
+            OpenOnFullscreen.IsChecked = FileInfo.OpenAsFullscreen;
         }
         public void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -46,10 +59,27 @@ namespace PlayFiles
             FileInfo.Name = FileName.Text;
             FileInfo.activeTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, HoursComboBox.SelectedIndex, MinutesComboBox.SelectedIndex, SecondsComboBox.SelectedIndex);
 
-            if(!Logic.FileInfo.filesLoaded.Contains(FileInfo))
-                Logic.FileInfo.filesLoaded.Add(FileInfo);
+            if(!Logic.FileInfo.FilesLoaded.Contains(FileInfo))
+                Logic.FileInfo.FilesLoaded.Add(FileInfo);
             window.UpdateButtons();
             Close();
+        }
+
+        private void OpenOnFullscreen_Click(object sender, RoutedEventArgs e)
+        {
+            FileInfo.OpenAsFullscreen = !FileInfo.OpenAsFullscreen;
+        }
+
+        private void ChangePath_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            bool? response = openFileDialog.ShowDialog();
+
+            if (response == true)
+            {
+                FileInfo.Path = openFileDialog.FileName;
+                FilePath.Text = openFileDialog.FileName;
+            }
         }
     }
 }
