@@ -24,25 +24,30 @@ namespace PlayFiles
         {
             InitializeComponent();
         }
+
+
+        private void CloseWhenComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
-    
-    public abstract class CloseMediaType
+    public enum CloseMediaType
     {
-        public abstract int SelectionIdx { get; protected set; }
+        OnFinished = 0,
+        OnDate = 1,
+        AfterTime = 2,
+        Never = 3
     }
-    public class CloseMediaOnFinished : CloseMediaType
+
+    public class CloseMediaAction
     {
-        public override int SelectionIdx { get; protected set; } = 1;
-    }
-    public class CloseMediaOnDate : CloseMediaType
-    {
-        public override int SelectionIdx { get; protected set; } = 1;
-        DateTime CloseAt { get; set; }
-    }
-    public class CloseMediaAfterTime : CloseMediaType
-    {
-        public override int SelectionIdx { get; protected set; } = 1;
-        DateTime CloseAfter { get; set; }
+        public CloseMediaType MediaType { get; private set; }
+        public DateTime? Date { get; set; } // For CloseMediaOnDate
+
+        public CloseMediaAction(CloseMediaType mediaType)
+        {
+            MediaType = mediaType;
+        }
     }
 }

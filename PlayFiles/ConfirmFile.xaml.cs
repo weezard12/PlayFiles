@@ -48,6 +48,7 @@ namespace PlayFiles
             SecondsComboBox.SelectedIndex = fileInfo.activeTime.Second;
 
             OpenOnFullscreen.IsChecked = FileInfo.OpenAsFullscreen;
+            FocusOnPlay.IsChecked = FileInfo.FocusMediaWhenPlayed;
         }
         public void CancelButton_Click(object sender, RoutedEventArgs e)
         {

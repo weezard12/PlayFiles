@@ -25,6 +25,7 @@ namespace PlayFiles.Logic
         public DateTime activeTime;
 
         public bool OpenAsFullscreen { get; set; } = true;
+        public bool FocusMediaWhenPlayed { get; set; } = true;
 
         public FileInfo(string path, bool withDot = true)
         {

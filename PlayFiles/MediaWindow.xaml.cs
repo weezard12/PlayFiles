@@ -36,6 +36,14 @@ namespace PlayFiles
                 Media.LoadedBehavior = MediaState.Manual;
                 Media.UnloadedBehavior = MediaState.Close;
 
+                // Sets the window focus
+                if (file.FocusMediaWhenPlayed)
+                {
+                    Topmost = true;
+                    Focus();
+                }
+                    
+
                 // Event subscription for media ended
                 Media.MediaEnded += (sender, e) =>
                 {

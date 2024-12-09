@@ -35,20 +35,20 @@
             Margin="20"
         />
         <Grid Grid.Row="3">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <TextBlock x:Name="CurrentTime" Text="Current Time: " Grid.Row="0"/>
-                <StackPanel x:Name="FilesLoadedPanel" Grid.Row="1">
-                </StackPanel>
-            </Grid>
-        
-        
+            <StackPanel x:Name="FilesLoadedPanel" Grid.Row="1">
+            </StackPanel>
+            
+            
+        </Grid>
     </Grid>
 </Window>
