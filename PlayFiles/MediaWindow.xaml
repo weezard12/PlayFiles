@@ -6,8 +6,7 @@
         xmlns:local="clr-namespace:PlayFiles"
         mc:Ignorable="d"
         WindowState="Maximized"
-        AllowsTransparency="True"
-        Background="Transparent"
+        Background="Black"
         Title="MediaWindow - esc to exit" Height="450" Width="800">
     <Grid x:Name="MainGrid">
         
