@@ -25,4 +25,24 @@ namespace PlayFiles
             InitializeComponent();
         }
     }
+
+    
+    public abstract class CloseMediaType
+    {
+        public abstract int SelectionIdx { get; protected set; }
+    }
+    public class CloseMediaOnFinished : CloseMediaType
+    {
+        public override int SelectionIdx { get; protected set; } = 1;
+    }
+    public class CloseMediaOnDate : CloseMediaType
+    {
+        public override int SelectionIdx { get; protected set; } = 1;
+        DateTime CloseAt { get; set; }
+    }
+    public class CloseMediaAfterTime : CloseMediaType
+    {
+        public override int SelectionIdx { get; protected set; } = 1;
+        DateTime CloseAfter { get; set; }
+    }
 }
