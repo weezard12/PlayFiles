@@ -1,19 +1,11 @@
 ﻿using Microsoft.Win32;
 using PlayFiles.Logic;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PlayFiles
 {
@@ -35,15 +27,24 @@ namespace PlayFiles
                 this.WindowStyle = WindowStyle.None;
                 this.ResizeMode = ResizeMode.NoResize;
             }
-                
 
-            if(file.type == FileType.LOCAL)
+            if (file.type == FileType.LOCAL)
             {
                 MediaElement Media = new MediaElement();
                 MainGrid.Children.Add(Media);
                 Media.Source = new Uri(file.Path);
                 Media.LoadedBehavior = MediaState.Manual;
+                Media.UnloadedBehavior = MediaState.Close;
+
+                // Event subscription for media ended
+                Media.MediaEnded += (sender, e) =>
+                {
+                    this.Close(); // Close the window when the media ends
+                };
+
                 Media.Play();
+
+                // Close window on Escape key press
                 KeyDown += (object sender, KeyEventArgs e) =>
                 {
                     if (e.Key == Key.Escape)
@@ -52,12 +53,12 @@ namespace PlayFiles
                     }
                 };
             }
-            else if(file.type == FileType.YT)
+            else if (file.type == FileType.YT)
             {
                 SetWebBrowserCompatibility();
                 webBrowser = new WebBrowser();
                 MainGrid.Children.Add(webBrowser);
-                webBrowser.Navigate(GetEmbeddedLink(file.Path)+"?autoplay=1");
+                webBrowser.Navigate(GetEmbeddedLink(file.Path) + "?autoplay=1");
             }
             else if (file.type == FileType.WEB)
             {
@@ -67,12 +68,14 @@ namespace PlayFiles
                 webBrowser.Navigate(file.Path);
             }
 
+            // Clean up when the window is closed
             Closed += (object sender, EventArgs e) =>
             {
                 webBrowser?.Navigate("about:blank");
                 Trace.WriteLine("AAA");
             };
         }
+
         private void SetWebBrowserCompatibility()
         {
             try
@@ -89,6 +92,7 @@ namespace PlayFiles
                 MessageBox.Show("Failed to set browser compatibility: " + ex.Message);
             }
         }
+
         static string GetEmbeddedLink(string youtubeLink)
         {
             // Extract the video ID from the YouTube link
@@ -99,16 +103,16 @@ namespace PlayFiles
             string embeddedLink = $"https://www.youtube.com/embed/{videoId}";
             return embeddedLink;
         }
+
         private void Window_Closed(object sender, EventArgs e)
         {
             webBrowser?.Navigate("about:blank");
             Trace.WriteLine("AAA");
         }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Trace.WriteLine("AAA");
-
         }
     }
 }
-
