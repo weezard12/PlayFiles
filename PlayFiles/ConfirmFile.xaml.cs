@@ -49,6 +49,8 @@ namespace PlayFiles
 
             OpenOnFullscreen.IsChecked = FileInfo.OpenAsFullscreen;
             FocusOnPlay.IsChecked = FileInfo.FocusMediaWhenPlayed;
+
+            CloseMediaControl.SetFileOfThatAction(FileInfo);
         }
         public void CancelButton_Click(object sender, RoutedEventArgs e)
         {
@@ -60,7 +62,10 @@ namespace PlayFiles
             FileInfo.Name = FileName.Text;
             FileInfo.activeTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, HoursComboBox.SelectedIndex, MinutesComboBox.SelectedIndex, SecondsComboBox.SelectedIndex);
 
-            if(!Logic.FileInfo.FilesLoaded.Contains(FileInfo))
+            CloseMediaControl.UpdateCloseMediaAction();
+            FileInfo.CloseMediaAction = CloseMediaControl.CloseMediaAction;
+
+            if (!Logic.FileInfo.FilesLoaded.Contains(FileInfo))
                 Logic.FileInfo.FilesLoaded.Add(FileInfo);
             window.UpdateButtons();
             Close();
@@ -81,6 +86,11 @@ namespace PlayFiles
                 FileInfo.Path = openFileDialog.FileName;
                 FilePath.Text = openFileDialog.FileName;
             }
+        }
+
+        private void FocusOnPlay_Click(object sender, RoutedEventArgs e)
+        {
+            FileInfo.FocusMediaWhenPlayed = !FileInfo.FocusMediaWhenPlayed;
         }
     }
 }

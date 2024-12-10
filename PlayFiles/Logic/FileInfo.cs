@@ -27,6 +27,8 @@ namespace PlayFiles.Logic
         public bool OpenAsFullscreen { get; set; } = true;
         public bool FocusMediaWhenPlayed { get; set; } = true;
 
+        public CloseMediaAction CloseMediaAction { get; set; }
+
         public FileInfo(string path, bool withDot = true)
         {
             this.Path = path;

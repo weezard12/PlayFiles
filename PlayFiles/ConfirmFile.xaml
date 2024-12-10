@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayFiles"
         mc:Ignorable="d"
-        Title="Confirm File" Height="250" Width="400">
+        Title="Confirm File" Height="280" Width="400">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -195,7 +195,7 @@
         
         <CheckBox x:Name="OpenOnFullscreen" Grid.Column="0"  Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="OpenOnFullscreen_Click"/>
         <Label Content="Open on fullscreen" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="FocusOnPlay" Grid.Column="0"  Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Click="OpenOnFullscreen_Click"/>
+        <CheckBox x:Name="FocusOnPlay" Grid.Column="0"  Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Click="FocusOnPlay_Click"/>
         <Label Content="Focus media when played" Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <local:CloseMedieControl x:Name="CloseMediaControl" Grid.Row="5" Grid.Column="1"/>
 
