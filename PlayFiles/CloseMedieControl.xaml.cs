@@ -36,7 +36,8 @@ namespace PlayFiles
             MinutesComboBox.SelectedIndex = CloseMediaAction.Date.Minute;
             SecondsComboBox.SelectedIndex = CloseMediaAction.Date.Second;
             CloseWhenComboBox.SelectedIndex = (int)CloseMediaAction.MediaType;
-
+            if(CloseMediaAction.MediaType == CloseMediaType.Never || CloseMediaAction.MediaType == CloseMediaType.OnFinished)
+                ResetMediaSelection();
         }
 
         public void UpdateCloseMediaAction()
