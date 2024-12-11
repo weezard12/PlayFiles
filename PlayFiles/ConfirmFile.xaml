@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -34,10 +35,10 @@
             <TextBox x:Name="FilePath"/>
             <Button x:Name="ChangePath" Grid.Column="1" Content="Browse" Click="ChangePath_Click" HorizontalAlignment="Left" Width="60"/>
         </Grid>
-        
-        
+
+
         <TextBlock Grid.Row="2" Grid.Column="0" Margin="10" VerticalAlignment="Center">File time:</TextBlock>
-        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="105,0,10,0" Grid.Row="2">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="67,4,0,0" Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2">
             <ComboBox x:Name="HoursComboBox" Width="50" Margin="5" SelectedIndex="0">
                 <ComboBoxItem Content="0"/>
                 <ComboBoxItem Content="1"/>
@@ -192,14 +193,19 @@
             </ComboBox>
         </StackPanel>
 
-        
+
         <CheckBox x:Name="OpenOnFullscreen" Grid.Column="0"  Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center" Click="OpenOnFullscreen_Click"/>
         <Label Content="Open on fullscreen" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <CheckBox x:Name="FocusOnPlay" Grid.Column="0"  Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center" Click="FocusOnPlay_Click"/>
         <Label Content="Focus media when played" Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <local:CloseMedieControl x:Name="CloseMediaControl" Grid.Row="5" Grid.Column="1"/>
 
-        <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Label Content="Play media with VLC Media Player" Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <CheckBox x:Name="PlayWithVLC" Grid.Column="0"  Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="FocusOnPlay_Click"/>
+
+        <local:CloseMedieControl x:Name="CloseMediaControl" Grid.Row="6" Grid.Column="1"/>
+
+
+        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Name="CancelButton" Content="Cancel" Width="75" Margin="5" Click="CancelButton_Click"/>
             <Button Name="ConfirmButton" Content="Confirm" Width="75" Margin="5" Click="ConfirmButton_Click"/>
         </StackPanel>
