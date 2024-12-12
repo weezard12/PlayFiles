@@ -26,6 +26,7 @@ namespace PlayFiles.Logic
 
         public bool OpenAsFullscreen { get; set; } = true;
         public bool FocusMediaWhenPlayed { get; set; } = true;
+        public bool OpenWithVLCMediaPlayer { get; set; } = false;
 
         public CloseMediaAction CloseMediaAction { get; set; }
 

@@ -200,7 +200,7 @@
         <Label Content="Focus media when played" Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
         <Label Content="Play media with VLC Media Player" Grid.Column="1"  Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <CheckBox x:Name="PlayWithVLC" Grid.Column="0"  Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="FocusOnPlay_Click"/>
+        <CheckBox x:Name="PlayWithVLC" Grid.Column="0"  Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center" Click="PlayWithVLC_Click"/>
 
         <local:CloseMedieControl x:Name="CloseMediaControl" Grid.Row="6" Grid.Column="1"/>
 

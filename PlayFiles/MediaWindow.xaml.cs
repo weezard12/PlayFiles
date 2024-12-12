@@ -37,6 +37,13 @@ namespace PlayFiles
                 Media.LoadedBehavior = MediaState.Manual;
                 Media.UnloadedBehavior = MediaState.Close;
 
+                if (file.OpenWithVLCMediaPlayer)
+                {
+                    OpenMediaInVLC(file.Path);
+                    Close();
+                    return;
+                }
+
                 // Sets the window focus
                 if (file.FocusMediaWhenPlayed)
                 {
@@ -160,6 +167,32 @@ namespace PlayFiles
             string embeddedLink = $"https://www.youtube.com/embed/{videoId}";
             return embeddedLink;
         }
+
+        private static void OpenMediaInVLC(string mediaPath)
+        {
+            string vlcPath = @"C:\Program Files\VideoLAN\VLC\vlc.exe"; // Path to VLC executable
+
+            try
+            {
+                // Command-line options for VLC
+                string arguments = $"\"{mediaPath}\" --fullscreen --video-on-top --play-and-exit";
+
+                ProcessStartInfo processInfo = new ProcessStartInfo
+                {
+                    FileName = vlcPath,
+                    Arguments = arguments, // Add arguments for fullscreen and focus
+                    UseShellExecute = false
+                };
+
+                Process process = Process.Start(processInfo);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+
 
         private void Window_Closed(object sender, EventArgs e)
         {

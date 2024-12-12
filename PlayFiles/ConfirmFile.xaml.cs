@@ -49,6 +49,7 @@ namespace PlayFiles
 
             OpenOnFullscreen.IsChecked = FileInfo.OpenAsFullscreen;
             FocusOnPlay.IsChecked = FileInfo.FocusMediaWhenPlayed;
+            PlayWithVLC.IsChecked = FileInfo.OpenWithVLCMediaPlayer;
 
             CloseMediaControl.SetFileOfThatAction(FileInfo);
         }
@@ -91,6 +92,12 @@ namespace PlayFiles
         private void FocusOnPlay_Click(object sender, RoutedEventArgs e)
         {
             FileInfo.FocusMediaWhenPlayed = !FileInfo.FocusMediaWhenPlayed;
+        }
+
+        private void PlayWithVLC_Click(object sender, RoutedEventArgs e)
+        {
+            FileInfo.OpenWithVLCMediaPlayer = !FileInfo.OpenWithVLCMediaPlayer;
+
         }
     }
 }

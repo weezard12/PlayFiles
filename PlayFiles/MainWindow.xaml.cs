@@ -86,7 +86,12 @@ namespace PlayFiles
                         Dispatcher.Invoke(() =>
                         {
                             //dateTime.PlayFile();
-                            new MediaWindow(dateTime).Show();
+                            MediaWindow mediaWindow = new MediaWindow(dateTime);
+                            try
+                            {
+                                mediaWindow.Show();
+                            }
+                            catch { }
                         });
                     }
                 }
