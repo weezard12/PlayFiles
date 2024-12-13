@@ -112,5 +112,14 @@ namespace PlayFiles
             CurrentTime.Text = "Current Time: "+DateTime.Now.ToString("HH:mm:ss");
         }
 
+        private void KeepScreenOn_Checked(object sender, RoutedEventArgs e)
+        {
+            ScreenLogic.EnableAlwaysOnMode();
+        }
+
+        private void KeepScreenOn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ScreenLogic.DisableAlwaysOnMode();
+        }
     }
 }

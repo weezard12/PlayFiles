@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PlayFiles"
         mc:Ignorable="d"
-        Title="Play Files" Height="450" Width="800">
+        Title="Play Files" Height="450" Width="800"
+        >
     <Grid Height="434" VerticalAlignment="Bottom">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Button
             x:Name="UploadButton"
@@ -50,5 +52,14 @@
             
             
         </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Label Content="Keep Screen On" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+            <CheckBox Name="KeepScreenOn" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" IsChecked="False" Checked="KeepScreenOn_Checked" Unchecked="KeepScreenOn_Unchecked"/>
+        </Grid>
+        
     </Grid>
 </Window>
