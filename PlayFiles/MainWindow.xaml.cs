@@ -30,6 +30,8 @@ namespace PlayFiles
         private bool isRunning = true;
         private DispatcherTimer _timer;
 
+        public static bool HideCursorWhenPlaying = false;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -80,7 +82,7 @@ namespace PlayFiles
                 DateTime currentTime = DateTime.Now;
                 foreach (var dateTime in FileInfo.FilesLoaded)
                 {
-                    if (currentTime.ToString("yyyy-MM-dd HH:mm:ss") == dateTime.activeTime.ToString("yyyy-MM-dd HH:mm:ss"))
+                    if (currentTime.ToString("HH:mm:ss") == dateTime.activeTime.ToString("HH:mm:ss"))
                     {
                         // Update UI on the main thread
                         Dispatcher.Invoke(() =>
@@ -120,6 +122,11 @@ namespace PlayFiles
         private void KeepScreenOn_Unchecked(object sender, RoutedEventArgs e)
         {
             ScreenLogic.DisableAlwaysOnMode();
+        }
+
+        private void HideCursor_Click(object sender, RoutedEventArgs e)
+        {
+            HideCursorWhenPlaying = !HideCursorWhenPlaying;
         }
     }
 }

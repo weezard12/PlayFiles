@@ -20,7 +20,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Close Media" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <ComboBox Grid.Column="1" x:Name="CloseWhenComboBox" Width="Auto" Margin="5" SelectedIndex="3" VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="CloseWhenComboBox_SelectionChanged">
+            <ComboBox Grid.Column="1" x:Name="CloseWhenComboBox" Width="Auto" Margin="5" SelectedIndex="0" VerticalAlignment="Center" HorizontalAlignment="Left" SelectionChanged="CloseWhenComboBox_SelectionChanged">
                 <ComboBoxItem Content="When Finished Playing"/>
                 <ComboBoxItem Content="On Date"/>
                 <ComboBoxItem Content="After Time"/>

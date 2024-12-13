@@ -29,7 +29,7 @@ namespace PlayFiles
             if (CloseMediaAction == null)
             {
                 ResetMediaSelection();
-                CloseMediaAction = new CloseMediaAction(CloseMediaType.Never);
+                CloseMediaAction = new CloseMediaAction(CloseMediaType.OnFinished);
             }
 
             HoursComboBox.SelectedIndex = CloseMediaAction.Date.Hour;

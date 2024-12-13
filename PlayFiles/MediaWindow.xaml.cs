@@ -16,7 +16,6 @@ namespace PlayFiles
     public partial class MediaWindow : Window
     {
         WebBrowser webBrowser;
-
         public MediaWindow(FileInfo file)
         {
             InitializeComponent();
@@ -28,6 +27,9 @@ namespace PlayFiles
                 this.WindowStyle = WindowStyle.None;
                 this.ResizeMode = ResizeMode.NoResize;
             }
+
+            if(MainWindow.HideCursorWhenPlaying)
+                Cursor = Cursors.None;
 
             if (file.type == FileType.LOCAL)
             {
@@ -71,7 +73,7 @@ namespace PlayFiles
                     }
 
                     // Initialize DispatcherTimer
-                    DispatcherTimer  _timer = new DispatcherTimer
+                    DispatcherTimer _timer = new DispatcherTimer
                     {
                         Interval = interval
                     };
@@ -104,8 +106,8 @@ namespace PlayFiles
                         };
                         timer.Start();
                     }
-
-                    Media.Play();
+                }
+                Media.Play();
 
                     // Close window on Escape key press
                     KeyDown += (object sender, KeyEventArgs e) =>
@@ -115,29 +117,29 @@ namespace PlayFiles
                             this.Close();
                         }
                     };
-                }
-                else if (file.type == FileType.YT)
-                {
-                    SetWebBrowserCompatibility();
-                    webBrowser = new WebBrowser();
-                    MainGrid.Children.Add(webBrowser);
-                    webBrowser.Navigate(GetEmbeddedLink(file.Path) + "?autoplay=1");
-                }
-                else if (file.type == FileType.WEB)
-                {
-                    SetWebBrowserCompatibility();
-                    webBrowser = new WebBrowser();
-                    MainGrid.Children.Add(webBrowser);
-                    webBrowser.Navigate(file.Path);
-                }
-
-                // Clean up when the window is closed
-                Closed += (object sender, EventArgs e) =>
-                {
-                    webBrowser?.Navigate("about:blank");
-                    Trace.WriteLine("AAA");
-                };
             }
+            else if (file.type == FileType.YT)
+            {
+                SetWebBrowserCompatibility();
+                webBrowser = new WebBrowser();
+                MainGrid.Children.Add(webBrowser);
+                webBrowser.Navigate(GetEmbeddedLink(file.Path) + "?autoplay=1");
+            }
+            else if (file.type == FileType.WEB)
+            {
+                SetWebBrowserCompatibility();
+                webBrowser = new WebBrowser();
+                MainGrid.Children.Add(webBrowser);
+                webBrowser.Navigate(file.Path);
+            }
+
+            // Clean up when the window is closed
+            Closed += (object sender, EventArgs e) =>
+            {
+                webBrowser?.Navigate("about:blank");
+                Trace.WriteLine("AAA");
+            };
+            
         }
 
         private void SetWebBrowserCompatibility()
