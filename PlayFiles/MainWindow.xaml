@@ -114,12 +114,33 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock
+                <StackPanel
+                    Grid.Column="0"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+
+                    <TextBlock
+                        Margin="0,0,0,0"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Text="Play Files">
+                        <TextBlock.Foreground>
+                            <LinearGradientBrush StartPoint="0,-0.5" EndPoint="0,1">
+                                <GradientStop Offset="0.0" Color="#640D5F" />
+                                <GradientStop Offset="1.0" Color="#D91656" />
+                            </LinearGradientBrush>
+                        </TextBlock.Foreground>
+                    </TextBlock>
+                    
+                    <TextBlock
                     VerticalAlignment="Center"
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="{DynamicResource ForegroundBrush}"
-                    Text="Play Files - Media Player Scheduler" />
+                    Text=" - Media Player Scheduler" />
+                </StackPanel>
+
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
                         Margin="0,0,10,0"
