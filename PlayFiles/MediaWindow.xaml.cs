@@ -2,11 +2,13 @@
 using PlayFiles.Logic;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using FileInfo = PlayFiles.Logic.FileInfo;
 
 namespace PlayFiles
 {
@@ -172,7 +174,10 @@ namespace PlayFiles
 
         private static void OpenMediaInVLC(string mediaPath)
         {
-            string vlcPath = @"C:\Program Files\VideoLAN\VLC\vlc.exe"; // Path to VLC executable
+            string vlcPath = @"C:\Program Files\VideoLAN\VLC\vlc.exe";
+            if (!File.Exists(vlcPath))
+                vlcPath = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
+
 
             try
             {
