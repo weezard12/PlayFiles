@@ -26,6 +26,10 @@ namespace PlayFiles
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ResourceDictionary _lightTheme;
+        private ResourceDictionary _darkTheme;
+        private bool _isDarkMode = false;
+
         public static MainWindow Instance { get; private set; }
         private bool isRunning = true;
         private DispatcherTimer _timer;
@@ -39,8 +43,55 @@ namespace PlayFiles
             StartTimer();
             Thread checkingThread = new Thread(CheckDateTime) { IsBackground = true };
             checkingThread.Start();
-            
+
+
+            LoadThemes();
         }
+
+        private void LoadThemes()
+        {
+            try
+            {
+                // Load the light theme
+                _lightTheme = new ResourceDictionary();
+                _lightTheme.Source = new Uri("pack://application:,,,/PlayFiles;component/Resources/LightTheme.xaml", UriKind.Absolute);
+
+                // Load the dark theme
+                _darkTheme = new ResourceDictionary();
+                _darkTheme.Source = new Uri("pack://application:,,,/PlayFiles;component/Resources/DarkTheme.xaml", UriKind.Absolute);
+
+                // Apply the default theme (light)
+                ApplyTheme(false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading themes: {ex.Message}", "Theme Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void ThemeToggle_Click(object sender, RoutedEventArgs e)
+        {
+            _isDarkMode = ThemeToggle.IsChecked ?? false;
+            ApplyTheme(_isDarkMode);
+        }
+
+        private void ApplyTheme(bool isDarkMode)
+        {
+            try
+            {
+                ResourceDictionary currentTheme = isDarkMode ? _darkTheme : _lightTheme;
+
+                // Clear existing theme resources and merge the new theme
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(currentTheme);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error applying theme: {ex.Message}", "Theme Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
+
         public void Upload(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -127,6 +178,10 @@ namespace PlayFiles
         private void HideCursor_Click(object sender, RoutedEventArgs e)
         {
             HideCursorWhenPlaying = !HideCursorWhenPlaying;
+        }
+        private void Quit_Clicked(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }
