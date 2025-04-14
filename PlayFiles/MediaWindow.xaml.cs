@@ -17,7 +17,13 @@ namespace PlayFiles
     /// </summary>
     public partial class MediaWindow : Window
     {
-        WebBrowser webBrowser;
+        // In case where the media is a web page or a YouTube video, we need to use the WebBrowser control
+        private WebBrowser webBrowser;
+
+        // In case the Play With VLC option is selected, we need save the VLC process
+        private Process vlcProcess;
+
+
         public MediaWindow(FileInfo file)
         {
             InitializeComponent();
@@ -41,10 +47,66 @@ namespace PlayFiles
                 Media.LoadedBehavior = MediaState.Manual;
                 Media.UnloadedBehavior = MediaState.Close;
 
+
+                switch (file.CloseMediaAction.MediaType)
+                {
+                    case CloseMediaType.OnFinished:
+                        Media.MediaEnded += (sender, e) =>
+                            this.Close(); // Close the window when the media ends
+                        break;
+
+                    case CloseMediaType.AfterTime:
+                        // Calculate the interval in milliseconds
+                        TimeSpan interval = new TimeSpan(file.CloseMediaAction.Date.Hour, file.CloseMediaAction.Date.Minute, file.CloseMediaAction.Date.Second);
+
+                        if (interval.TotalMilliseconds <= 0)
+                            return;
+
+
+                        // Initialize DispatcherTimer
+                        DispatcherTimer _timer = new DispatcherTimer
+                        {
+                            Interval = interval
+                        };
+
+                        // Event fired when the timer interval elapses
+                        _timer.Tick += (object sender, EventArgs e) =>
+                        {
+                            Close();
+                            vlcProcess?.Kill(); // Kill the VLC process if it was started
+                            _timer.Stop();
+                        };
+                        _timer.Start();
+                        break;
+                    case CloseMediaType.OnDate:
+                        // Calculate the time until the specified date
+                        TimeSpan timeUntilClose = file.CloseMediaAction.Date - DateTime.Now;
+
+                        if (timeUntilClose.TotalMilliseconds > 0)
+                        {
+                            // Use DispatcherTimer to check the date periodically
+                            var timer = new System.Windows.Threading.DispatcherTimer();
+                            timer.Interval = TimeSpan.FromMilliseconds(500); // Check every 500ms
+                            timer.Tick += (sender, e) =>
+                            {
+                                if (DateTime.Now >= file.CloseMediaAction.Date)
+                                {
+                                    timer.Stop(); // Stop the timer
+                                    vlcProcess?.Kill(); // Kill the VLC process if it was started
+                                    this.Close(); // Close the window
+                                }
+                            };
+                            timer.Start();
+                        }
+                        break;
+
+                }
+
+
                 if (file.OpenWithVLCMediaPlayer)
                 {
                     OpenMediaInVLC(file.Path);
-                    Close();
+                    Hide();
                     return;
                 }
 
@@ -55,60 +117,7 @@ namespace PlayFiles
                     Focus();
                 }
 
-                if (file.CloseMediaAction.MediaType == CloseMediaType.OnFinished)
-                {
-                    // Event subscription for media ended
-                    Media.MediaEnded += (sender, e) =>
-                    {
-                        this.Close(); // Close the window when the media ends
-                    };
-                }
-                else if (file.CloseMediaAction.MediaType == CloseMediaType.AfterTime)
-                {
 
-                    // Calculate the interval in milliseconds
-                    TimeSpan interval = new TimeSpan(file.CloseMediaAction.Date.Hour, file.CloseMediaAction.Date.Minute, file.CloseMediaAction.Date.Second);
-
-                    if (interval.TotalMilliseconds <= 0)
-                    {
-                        return;
-                    }
-
-                    // Initialize DispatcherTimer
-                    DispatcherTimer _timer = new DispatcherTimer
-                    {
-                        Interval = interval
-                    };
-
-                    // Event fired when the timer interval elapses
-                    _timer.Tick += (object sender, EventArgs e) =>
-                    {
-                        Close();
-                        _timer.Stop();
-                    };
-                    _timer.Start();
-                }
-                else if (file.CloseMediaAction.MediaType == CloseMediaType.OnDate)
-                {
-                    // Calculate the time until the specified date
-                    TimeSpan timeUntilClose = file.CloseMediaAction.Date - DateTime.Now;
-
-                    if (timeUntilClose.TotalMilliseconds > 0)
-                    {
-                        // Use DispatcherTimer to check the date periodically
-                        var timer = new System.Windows.Threading.DispatcherTimer();
-                        timer.Interval = TimeSpan.FromMilliseconds(500); // Check every 500ms
-                        timer.Tick += (sender, e) =>
-                        {
-                            if (DateTime.Now >= file.CloseMediaAction.Date)
-                            {
-                                timer.Stop(); // Stop the timer
-                                this.Close(); // Close the window
-                            }
-                        };
-                        timer.Start();
-                    }
-                }
                 Media.Play();
 
                     // Close window on Escape key press
@@ -172,7 +181,7 @@ namespace PlayFiles
             return embeddedLink;
         }
 
-        private static void OpenMediaInVLC(string mediaPath)
+        private void OpenMediaInVLC(string mediaPath)
         {
             string vlcPath = @"C:\Program Files\VideoLAN\VLC\vlc.exe";
             if (!File.Exists(vlcPath))
@@ -191,11 +200,11 @@ namespace PlayFiles
                     UseShellExecute = false
                 };
 
-                Process process = Process.Start(processInfo);
+                vlcProcess = Process.Start(processInfo);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error: {ex.Message}");
+                
             }
         }
 
@@ -204,12 +213,12 @@ namespace PlayFiles
         private void Window_Closed(object sender, EventArgs e)
         {
             webBrowser?.Navigate("about:blank");
-            Trace.WriteLine("AAA");
+            Trace.WriteLine("Closed Window");
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Trace.WriteLine("AAA");
+            Trace.WriteLine("Closing Window");
         }
     }
 }
