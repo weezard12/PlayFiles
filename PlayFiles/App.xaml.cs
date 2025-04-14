@@ -20,5 +20,7 @@ namespace PlayFiles
             // Code to run before application closes
             ScreenLogic.DisableAlwaysOnMode();
         }
+
+
     }
 }

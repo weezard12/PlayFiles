@@ -26,9 +26,9 @@ namespace PlayFiles
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ResourceDictionary _lightTheme;
-        private ResourceDictionary _darkTheme;
-        private bool _isDarkMode = false;
+        private static ResourceDictionary _lightTheme;
+        private static ResourceDictionary _darkTheme;
+        public static bool IsDarkMode = false;
 
         public static MainWindow Instance { get; private set; }
         private bool isRunning = true;
@@ -46,6 +46,13 @@ namespace PlayFiles
 
 
             LoadThemes();
+        }
+
+        public static ResourceDictionary GetCurrentTheme()
+        {
+            if(IsDarkMode)
+                return _darkTheme;
+             return _lightTheme;
         }
 
         private void LoadThemes()
@@ -70,8 +77,8 @@ namespace PlayFiles
         }
         private void ThemeToggle_Click(object sender, RoutedEventArgs e)
         {
-            _isDarkMode = ThemeToggle.IsChecked ?? false;
-            ApplyTheme(_isDarkMode);
+            IsDarkMode = ThemeToggle.IsChecked ?? false;
+            ApplyTheme(IsDarkMode);
         }
 
         private void ApplyTheme(bool isDarkMode)

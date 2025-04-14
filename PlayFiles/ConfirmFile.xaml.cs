@@ -43,6 +43,11 @@ namespace PlayFiles
 
             FilePath.Text = fileInfo.Path;
             FileName.Text = fileInfo.Name;
+
+            SetupComboBox(SecondsComboBox, 60);
+            SetupComboBox(MinutesComboBox, 60);
+            SetupComboBox(HoursComboBox, 24);
+
             HoursComboBox.SelectedIndex = fileInfo.activeTime.Hour;
             MinutesComboBox.SelectedIndex = fileInfo.activeTime.Minute;
             SecondsComboBox.SelectedIndex = fileInfo.activeTime.Second;
@@ -53,6 +58,35 @@ namespace PlayFiles
 
             CloseMediaControl.SetFileOfThatAction(FileInfo);
         }
+
+        private void SetupComboBox(ComboBox comboBox, int maxValue)
+        {
+            comboBox.Items.Clear();
+
+            // Make sure the style is applied before adding items
+            comboBox.Style = (Style)FindResource("ModernComboBox");
+
+            for (int i = 0; i < maxValue; i++)
+            {
+                string content = i > 9 ? i.ToString() : "0" + i.ToString();
+
+                // Create a simple ComboBoxItem
+                ComboBoxItem item = new ComboBoxItem
+                {
+                    Content = content,
+                    Style = (Style)FindResource("ModernComboBoxItem")
+                };
+
+                comboBox.Items.Add(item);
+            }
+
+            // Ensure the first item is selected by default if nothing is selected
+            if (comboBox.SelectedIndex == -1 && comboBox.Items.Count > 0)
+            {
+                comboBox.SelectedIndex = 0;
+            }
+        }
+
         public void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
