@@ -32,6 +32,8 @@ namespace PlayFiles
         public static bool IsDarkMode { get => Properties.Settings.Default.IsDarkTheme; set => Properties.Settings.Default.IsDarkTheme = value; }
 
         public static MainWindow Instance { get; private set; }
+        public Action ThemeChanged { get; set; } = new Action(() => { });
+
         private bool isRunning = true;
         private DispatcherTimer _timer;
 
@@ -93,6 +95,8 @@ namespace PlayFiles
                 // Clear existing theme resources and merge the new theme
                 Application.Current.Resources.MergedDictionaries.Clear();
                 Application.Current.Resources.MergedDictionaries.Add(currentTheme);
+
+                ThemeChanged?.Invoke();
             }
             catch (Exception ex)
             {
