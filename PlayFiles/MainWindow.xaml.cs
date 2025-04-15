@@ -28,7 +28,7 @@ namespace PlayFiles
     {
         private static ResourceDictionary _lightTheme;
         private static ResourceDictionary _darkTheme;
-        public static bool IsDarkMode = false;
+        public static bool IsDarkMode { get => Properties.Settings.Default.IsDarkTheme; set => Properties.Settings.Default.IsDarkTheme = value; }
 
         public static MainWindow Instance { get; private set; }
         private bool isRunning = true;
@@ -68,7 +68,8 @@ namespace PlayFiles
                 _darkTheme.Source = new Uri("pack://application:,,,/PlayFiles;component/Resources/DarkTheme.xaml", UriKind.Absolute);
 
                 // Apply the default theme (light)
-                ApplyTheme(false);
+                ApplyTheme(IsDarkMode);
+                ThemeToggle.IsChecked = IsDarkMode;
             }
             catch (Exception ex)
             {
@@ -78,6 +79,7 @@ namespace PlayFiles
         private void ThemeToggle_Click(object sender, RoutedEventArgs e)
         {
             IsDarkMode = ThemeToggle.IsChecked ?? false;
+            Properties.Settings.Default.Save();
             ApplyTheme(IsDarkMode);
         }
 
