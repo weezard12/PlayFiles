@@ -32,6 +32,10 @@ namespace PlayFiles
                 CloseMediaAction = new CloseMediaAction(CloseMediaType.OnFinished);
             }
 
+            SetupComboBox(SecondsComboBox, 60);
+            SetupComboBox(MinutesComboBox, 60);
+            SetupComboBox(HoursComboBox, 24);
+
             HoursComboBox.SelectedIndex = CloseMediaAction.Date.Hour;
             MinutesComboBox.SelectedIndex = CloseMediaAction.Date.Minute;
             SecondsComboBox.SelectedIndex = CloseMediaAction.Date.Second;
@@ -43,6 +47,28 @@ namespace PlayFiles
         public void UpdateCloseMediaAction()
         {
             CloseMediaAction.Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, HoursComboBox.SelectedIndex, MinutesComboBox.SelectedIndex, SecondsComboBox.SelectedIndex);
+        }
+
+        private void SetupComboBox(ComboBox comboBox, int maxValue)
+        {
+            comboBox.Items.Clear();
+
+            // Make sure the style is applied before adding items
+            comboBox.Style = (Style)FindResource("ModernComboBox");
+
+            for (int i = 0; i < maxValue; i++)
+            {
+                string content = i > 9 ? i.ToString() : "0" + i.ToString();
+
+                // Create a simple ComboBoxItem
+                ComboBoxItem item = new ComboBoxItem
+                {
+                    Content = content,
+                    Style = (Style)FindResource("ModernComboBoxItem")
+                };
+
+                comboBox.Items.Add(item);
+            }
         }
 
         private void ResetMediaSelection()
