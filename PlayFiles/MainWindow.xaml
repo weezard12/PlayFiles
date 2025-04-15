@@ -83,7 +83,41 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
+        <Style x:Key="RoundCornerAboutButton" TargetType="Button">
+            <Setter Property="Background" Value="{DynamicResource LogoBrush}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="15,10" />
+            <Setter Property="Margin" Value="0,8" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Medium" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="ForestGreen" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="{DynamicResource LogoBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="ForestGreen" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="CustomCheckBox" TargetType="CheckBox">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Margin" Value="5,0" />
@@ -124,21 +158,15 @@
                         VerticalAlignment="Center"
                         FontSize="20"
                         FontWeight="Bold"
-                        Text="Play Files">
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush StartPoint="0,-0.5" EndPoint="0,1">
-                                <GradientStop Offset="0.0" Color="#640D5F" />
-                                <GradientStop Offset="1.0" Color="#D91656" />
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
-                    
+                        Foreground="{DynamicResource LogoBrush}"
+                        Text="Play Files" />
+
                     <TextBlock
-                    VerticalAlignment="Center"
-                    FontSize="20"
-                    FontWeight="Bold"
-                    Foreground="{DynamicResource ForegroundBrush}"
-                    Text=" - Media Player Scheduler" />
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        FontWeight="Bold"
+                        Foreground="{DynamicResource ForegroundBrush}"
+                        Text=" - Media Player Scheduler" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
@@ -285,17 +313,29 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <Button
-                    x:Name="QuitButton"
-                    Grid.ColumnSpan="2"
-                    Width="85"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Click="Quit_Clicked"
-                    Style="{StaticResource RoundCornerCancelButton}">
-                    <TextBlock Text="Quit Player" />
+                <StackPanel Grid.ColumnSpan="2" Orientation="Horizontal">
+                    <Button
+                        x:Name="QuitButton"
+                        Width="85"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Click="Quit_Clicked"
+                        Style="{StaticResource RoundCornerCancelButton}">
+                        <TextBlock Text="Quit Player" />
 
-                </Button>
+                    </Button>
+                    <Button
+                        Width="95"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Click="About_Clicked"
+                        Style="{StaticResource RoundCornerAboutButton}">
+                        <TextBlock Text="About / Help" />
+
+                    </Button>
+                </StackPanel>
+
                 <StackPanel
                     Grid.Column="1"
                     HorizontalAlignment="Right"

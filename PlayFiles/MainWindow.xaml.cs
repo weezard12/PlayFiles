@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -191,6 +192,14 @@ namespace PlayFiles
         private void Quit_Clicked(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+        private void About_Clicked(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/weezard12/PlayFiles",
+                UseShellExecute = true
+            });
         }
     }
 }

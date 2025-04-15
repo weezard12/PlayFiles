@@ -3,5 +3,8 @@
     <SolidColorBrush x:Key="ForegroundBrush" Color="#f1f1f1" />
     <SolidColorBrush x:Key="PanelBackgroundBrush" Color="#2d2d2d" />
     <SolidColorBrush x:Key="BorderBrush" Color="#555555" />
-
+    <LinearGradientBrush x:Key="LogoBrush" StartPoint="0,-0.5" EndPoint="0,1">
+        <GradientStop Offset="0.0" Color="#640D5F" />
+        <GradientStop Offset="1.0" Color="#D91656" />
+    </LinearGradientBrush>
 </ResourceDictionary>
