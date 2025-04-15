@@ -28,6 +28,9 @@ namespace PlayFiles.Logic
         public bool FocusMediaWhenPlayed { get; set; } = true;
         public bool OpenWithVLCMediaPlayer { get; set; } = false;
 
+        public int Volume { get; set; } = 100;
+        public int AudioLayer { get; set; } = 1;
+
         public CloseMediaAction CloseMediaAction { get; set; }
 
         public FileInfo(string path, bool withDot = true)

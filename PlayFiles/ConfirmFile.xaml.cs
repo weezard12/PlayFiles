@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -55,6 +56,11 @@ namespace PlayFiles
             OpenOnFullscreen.IsChecked = FileInfo.OpenAsFullscreen;
             FocusOnPlay.IsChecked = FileInfo.FocusMediaWhenPlayed;
             PlayWithVLC.IsChecked = FileInfo.OpenWithVLCMediaPlayer;
+
+            VolumeSlider.Value = FileInfo.Volume;
+
+            AudioLayerGrid.Visibility = FileInfo.OpenWithVLCMediaPlayer? Visibility.Visible : Visibility.Collapsed;
+            AudioLayerTextBox.Text = fileInfo.AudioLayer.ToString();
 
             CloseMediaControl.SetFileOfThatAction(FileInfo);
         }
@@ -131,7 +137,36 @@ namespace PlayFiles
         private void PlayWithVLC_Click(object sender, RoutedEventArgs e)
         {
             FileInfo.OpenWithVLCMediaPlayer = !FileInfo.OpenWithVLCMediaPlayer;
+            AudioLayerGrid.Visibility = FileInfo.OpenWithVLCMediaPlayer ? Visibility.Visible : Visibility.Collapsed;
+        }
 
+        private void AudioLayersButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: Implement audio layers functionality
+            // For example, you could open a dialog to select audio tracks
+            MessageBox.Show("Audio Layers selection will be implemented here.", "Audio Layers", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void VolumeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(VolumeAmountText != null)
+                VolumeAmountText.Text = VolumeSlider.Value + "%";
+
+            if(FileInfo != null)
+                FileInfo.Volume = (int)VolumeSlider.Value;
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+"); // Matches non-numeric characters
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void AudioLayerTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (FileInfo == null)
+                return;
+            FileInfo.AudioLayer = int.Parse(AudioLayerTextBox.Text);
         }
     }
 }

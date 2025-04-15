@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Confirm File"
     Width="460"
-    Height="470"
+    Height="Auto"
     WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
 
@@ -89,58 +89,58 @@
             <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
             <Setter Property="BorderThickness" Value="1" />
             <Setter Property="Padding" Value="8,4" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
-            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
-            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="ScrollViewer.CanContentScroll" Value="True" />
+            <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBox">
                         <Grid>
-                            <ToggleButton 
-                        x:Name="toggleButton" 
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        Background="{TemplateBinding Background}"
-                        Foreground="{TemplateBinding Foreground}"
-                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                        ClickMode="Press">
+                            <ToggleButton
+                                x:Name="toggleButton"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                ClickMode="Press"
+                                Foreground="{TemplateBinding Foreground}"
+                                IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
                                 <ToggleButton.Template>
                                     <ControlTemplate TargetType="ToggleButton">
-                                        <Border 
-                                    x:Name="templateRoot" 
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="{TemplateBinding BorderBrush}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    CornerRadius="4">
+                                        <Border
+                                            x:Name="templateRoot"
+                                            Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            CornerRadius="4">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition />
                                                     <ColumnDefinition Width="Auto" />
                                                 </Grid.ColumnDefinitions>
                                                 <ContentPresenter
-                                            Grid.Column="0"
-                                            Margin="{TemplateBinding Padding}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Content="{TemplateBinding Content}"
-                                            ContentTemplate="{TemplateBinding ContentTemplate}"
-                                            ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                            TextElement.Foreground="{TemplateBinding Foreground}" />
-                                                <Path 
-                                            x:Name="arrow"
-                                            Grid.Column="1"
-                                            Margin="0,0,8,0"
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            Data="M0,0 L5,5 L10,0"
-                                            Fill="{DynamicResource ForegroundBrush}"
-                                            Stretch="Uniform"
-                                            Stroke="{DynamicResource ForegroundBrush}"
-                                            StrokeThickness="1.5"
-                                            Width="8"
-                                            Height="5" />
+                                                    Grid.Column="0"
+                                                    Margin="{TemplateBinding Padding}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Content="{TemplateBinding Content}"
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                    TextElement.Foreground="{TemplateBinding Foreground}" />
+                                                <Path
+                                                    x:Name="arrow"
+                                                    Grid.Column="1"
+                                                    Width="8"
+                                                    Height="5"
+                                                    Margin="0,0,8,0"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Data="M0,0 L5,5 L10,0"
+                                                    Fill="{DynamicResource ForegroundBrush}"
+                                                    Stretch="Uniform"
+                                                    Stroke="{DynamicResource ForegroundBrush}"
+                                                    StrokeThickness="1.5" />
                                             </Grid>
                                         </Border>
                                         <ControlTemplate.Triggers>
@@ -158,30 +158,30 @@
                                 </ToggleButton.Template>
                             </ToggleButton>
                             <ContentPresenter
-                        x:Name="contentPresenter"
-                        Margin="{TemplateBinding Padding}"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                        Content="{TemplateBinding SelectionBoxItem}"
-                        ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
-                        ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                        ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
-                        IsHitTestVisible="False" />
-                            <Popup 
-                        x:Name="PART_Popup"
-                        AllowsTransparency="True"
-                        Focusable="False"
-                        IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
-                        Placement="Bottom"
-                        PopupAnimation="Slide">
+                                x:Name="contentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                IsHitTestVisible="False" />
+                            <Popup
+                                x:Name="PART_Popup"
+                                AllowsTransparency="True"
+                                Focusable="False"
+                                IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                Placement="Bottom"
+                                PopupAnimation="Slide">
                                 <Border
-                            x:Name="dropDownBorder"
-                            MinWidth="{Binding ActualWidth, ElementName=toggleButton}"
-                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
-                            Background="{DynamicResource PanelBackgroundBrush}"
-                            BorderBrush="{DynamicResource BorderBrush}"
-                            BorderThickness="1"
-                            CornerRadius="4">
+                                    x:Name="dropDownBorder"
+                                    MinWidth="{Binding ActualWidth, ElementName=toggleButton}"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    Background="{DynamicResource PanelBackgroundBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="4">
                                     <ScrollViewer x:Name="DropDownScrollViewer">
                                         <ItemsPresenter x:Name="ItemsPresenter" KeyboardNavigation.DirectionalNavigation="Contained" />
                                     </ScrollViewer>
@@ -202,14 +202,12 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBoxItem">
                         <Border
-                    x:Name="border"
-                    Background="{TemplateBinding Background}"
-                    BorderThickness="0"
-                    Padding="{TemplateBinding Padding}"
-                    SnapsToDevicePixels="True">
-                            <ContentPresenter 
-                        HorizontalAlignment="Left" 
-                        VerticalAlignment="Center" />
+                            x:Name="border"
+                            Padding="{TemplateBinding Padding}"
+                            Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -223,6 +221,130 @@
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter TargetName="border" Property="Opacity" Value="0.6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Slider Style  -->
+        <Style x:Key="ModernSlider" TargetType="Slider">
+            <Setter Property="Foreground" Value="#4a6fa8" />
+            <Setter Property="Background" Value="#e0e0e0" />
+            <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
+            <Setter Property="Margin" Value="8,4,0,4" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Border
+                                x:Name="TrackBackground"
+                                Grid.Row="1"
+                                Height="4"
+                                Margin="6,0"
+                                VerticalAlignment="Center"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="0"
+                                CornerRadius="2" />
+                            <Track x:Name="PART_Track" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Background="{TemplateBinding Foreground}" Command="{x:Static Slider.DecreaseLarge}">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border
+                                                    Height="4"
+                                                    Background="{TemplateBinding Background}"
+                                                    CornerRadius="2" />
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}">
+                                        <RepeatButton.Template>
+                                            <ControlTemplate TargetType="RepeatButton">
+                                                <Border
+                                                    Height="4"
+                                                    Background="Transparent"
+                                                    CornerRadius="2" />
+                                            </ControlTemplate>
+                                        </RepeatButton.Template>
+                                    </RepeatButton>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb>
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Grid>
+                                                    <Ellipse
+                                                        x:Name="thumbEllipse"
+                                                        Width="16"
+                                                        Height="16"
+                                                        Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Slider}}" />
+                                                </Grid>
+                                                <ControlTemplate.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter TargetName="thumbEllipse" Property="Fill" Value="#5a80b9" />
+                                                    </Trigger>
+                                                    <Trigger Property="IsDragging" Value="True">
+                                                        <Setter TargetName="thumbEllipse" Property="Fill" Value="#3a5f98" />
+                                                    </Trigger>
+                                                </ControlTemplate.Triggers>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="TrackBackground" Property="Opacity" Value="0.6" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  Secondary Button Style for Audio Layers  -->
+        <Style
+            x:Key="SecondaryButton"
+            BasedOn="{StaticResource RoundCornerButton}"
+            TargetType="Button">
+            <Setter Property="Background" Value="#6a7d93" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="Margin" Value="0,8,0,0" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#7a8da3" />
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#5a6d83" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="border" Property="Background" Value="#9a9a9a" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -317,8 +439,7 @@
                         Width="60"
                         Margin="0,0,5,0"
                         SelectedIndex="0"
-                        Style="{StaticResource ModernComboBox}">
-                    </ComboBox>
+                        Style="{StaticResource ModernComboBox}" />
                     <TextBlock
                         Margin="3,0"
                         VerticalAlignment="Center"
@@ -330,9 +451,7 @@
                         Width="60"
                         Margin="5,0"
                         SelectedIndex="0"
-                        Style="{StaticResource ModernComboBox}">
-
-                    </ComboBox>
+                        Style="{StaticResource ModernComboBox}" />
                     <TextBlock
                         Margin="3,0"
                         VerticalAlignment="Center"
@@ -344,8 +463,7 @@
                         Width="60"
                         Margin="5,0,0,0"
                         SelectedIndex="0"
-                        Style="{StaticResource ModernComboBox}">
-                    </ComboBox>
+                        Style="{StaticResource ModernComboBox}" />
                 </StackPanel>
             </Border>
 
@@ -367,7 +485,6 @@
                         FontWeight="SemiBold"
                         Foreground="{DynamicResource ForegroundBrush}"
                         Text="Playback Options" />
-
                     <Grid Margin="0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -383,7 +500,6 @@
                             Content="Open on fullscreen"
                             Style="{StaticResource ModernLabel}" />
                     </Grid>
-
                     <Grid Margin="0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -399,7 +515,6 @@
                             Content="Focus media when played"
                             Style="{StaticResource ModernLabel}" />
                     </Grid>
-
                     <Grid Margin="0,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -414,6 +529,60 @@
                             Grid.Column="1"
                             Content="Play media with VLC Media Player"
                             Style="{StaticResource ModernLabel}" />
+                    </Grid>
+
+                    <!--  Audio Layer Control  -->
+                    <Grid x:Name="AudioLayerGrid" Margin="20,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Column="0"
+                            Content="Playing Audio Layer:"
+                            Style="{StaticResource ModernLabel}" />
+                        <TextBox
+                            x:Name="AudioLayerTextBox"
+                            Grid.Column="1"
+                            Margin="0,0,80,0"
+                            PreviewTextInput="NumberValidationTextBox"
+                            Style="{StaticResource ModernTextBox}"
+                            Text="1"
+                            TextChanged="AudioLayerTextBox_TextChanged" />
+
+                    </Grid>
+
+                    <!--  Volume Control  -->
+                    <Grid Margin="0,8,0,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock
+                            Grid.Column="0"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource ModernTextBlock}"
+                            Text="Volume:" />
+                        <Slider
+                            x:Name="VolumeSlider"
+                            Grid.Column="1"
+                            Margin="0,0,45,0"
+                            VerticalAlignment="Center"
+                            IsSnapToTickEnabled="True"
+                            Maximum="100"
+                            Minimum="0"
+                            Style="{StaticResource ModernSlider}"
+                            TickFrequency="1"
+                            ValueChanged="VolumeSlider_ValueChanged"
+                            Value="100" />
+                        <TextBlock
+                            x:Name="VolumeAmountText"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource ModernTextBlock}"
+                            Text="100%" />
                     </Grid>
                 </StackPanel>
             </Border>

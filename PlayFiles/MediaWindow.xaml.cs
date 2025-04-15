@@ -23,10 +23,13 @@ namespace PlayFiles
         // In case the Play With VLC option is selected, we need save the VLC process
         private Process vlcProcess;
 
+        private readonly FileInfo playingFile;
 
         public MediaWindow(FileInfo file)
         {
             InitializeComponent();
+
+            playingFile = file;
 
             if (file.OpenAsFullscreen)
             {
@@ -105,8 +108,9 @@ namespace PlayFiles
 
                 if (file.OpenWithVLCMediaPlayer)
                 {
+                    
                     OpenMediaInVLC(file.Path);
-                    Hide();
+                    Close();
                     return;
                 }
 
@@ -117,6 +121,8 @@ namespace PlayFiles
                     Focus();
                 }
 
+
+                Media.Volume = file.Volume;
 
                 Media.Play();
 
@@ -187,11 +193,10 @@ namespace PlayFiles
             if (!File.Exists(vlcPath))
                 vlcPath = @"C:\Program Files (x86)\VideoLAN\VLC\vlc.exe";
 
-
             try
             {
                 // Command-line options for VLC
-                string arguments = $"\"{mediaPath}\" --fullscreen --video-on-top --play-and-exit";
+                string arguments = $"\"{mediaPath}\" --fullscreen --video-on-top --play-and-exit --gain={(float)playingFile.Volume / 100} --audio-track={playingFile.AudioLayer-1}";
 
                 ProcessStartInfo processInfo = new ProcessStartInfo
                 {
