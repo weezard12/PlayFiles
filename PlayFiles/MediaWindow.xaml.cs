@@ -3,6 +3,7 @@ using PlayFiles.Logic;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -82,25 +83,43 @@ namespace PlayFiles
                         _timer.Start();
                         break;
                     case CloseMediaType.OnDate:
-                        // Calculate the time until the specified date
-                        TimeSpan timeUntilClose = file.CloseMediaAction.Date - DateTime.Now;
+                        // Get the time of day for the closing action
+                        TimeSpan closeTimeOfDay = file.CloseMediaAction.Date.TimeOfDay;
+                        TimeSpan currentTimeOfDay = DateTime.Now.TimeOfDay;
 
-                        if (timeUntilClose.TotalMilliseconds > 0)
+                        // Calculate initial delay until close time of today
+                        TimeSpan initialDelay = closeTimeOfDay - currentTimeOfDay;
+
+                        // If the time has already passed today, calculate delay until tomorrow's occurrence
+                        if (initialDelay.TotalMilliseconds < 0)
                         {
-                            // Use DispatcherTimer to check the date periodically
-                            var timer = new System.Windows.Threading.DispatcherTimer();
-                            timer.Interval = TimeSpan.FromMilliseconds(500); // Check every 500ms
-                            timer.Tick += (sender, e) =>
-                            {
-                                if (DateTime.Now >= file.CloseMediaAction.Date)
-                                {
-                                    timer.Stop(); // Stop the timer
-                                    vlcProcess?.Kill(); // Kill the VLC process if it was started
-                                    this.Close(); // Close the window
-                                }
-                            };
-                            timer.Start();
+                            initialDelay = TimeSpan.FromDays(1) + initialDelay;
                         }
+
+                        var timer = new System.Windows.Threading.DispatcherTimer();
+                        timer.Interval = TimeSpan.FromMilliseconds(500); // Check every 500ms
+
+                        timer.Tick += (sender, e) =>
+                        {
+                            TimeSpan nowTimeOfDay = DateTime.Now.TimeOfDay;
+
+                            // Check if current time of day has passed the desired close time
+                            if (nowTimeOfDay >= closeTimeOfDay)
+                            {
+                                timer.Stop();
+                                vlcProcess?.Kill(); // Kill VLC
+                                this.Close();       // Close the window
+                            }
+                        };
+
+                        // Start a Task.Delay to begin checking at the correct time
+                        Task.Delay(initialDelay).ContinueWith(_ =>
+                        {
+                            Application.Current.Dispatcher.Invoke(() =>
+                            {
+                                timer.Start();
+                            });
+                        });
                         break;
 
                 }
