@@ -63,6 +63,14 @@ namespace PlayFiles
             AudioLayerTextBox.Text = fileInfo.AudioLayer.ToString();
 
             CloseMediaControl.SetFileOfThatAction(FileInfo);
+
+            // Load the file duration if its null
+            if(FileInfo.MediaDuration == TimeSpan.Zero)
+                UpdateMediaDurationText();
+            else
+                MediaDurationText.Text = $"Media Original Duration: {FileInfo.MediaDuration.Hours:D2}:{FileInfo.MediaDuration.Minutes:D2}:{FileInfo.MediaDuration.Seconds:D2}";
+            
+            
         }
 
         private void SetupComboBox(ComboBox comboBox, int maxValue)
@@ -91,6 +99,26 @@ namespace PlayFiles
             {
                 comboBox.SelectedIndex = 0;
             }
+        }
+
+        private async void UpdateMediaDurationText()
+        {
+            var duration = await VlcUtils.GetMediaDurationAsync(FileInfo.Path);
+
+            if (duration == TimeSpan.Zero)
+            {
+                Dispatcher.Invoke(() =>
+                {
+                    MediaDurationText.Text = $"Media Original Duration: Faild to load file duration.";
+                });
+                return;
+            }
+
+            FileInfo.MediaDuration = duration;
+            Dispatcher.Invoke(() =>
+            {
+                MediaDurationText.Text = $"Media Original Duration: {duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
+            });
         }
 
         public void CancelButton_Click(object sender, RoutedEventArgs e)
@@ -167,6 +195,12 @@ namespace PlayFiles
             if (FileInfo == null)
                 return;
             FileInfo.AudioLayer = int.Parse(AudioLayerTextBox.Text);
+        }
+
+        private void FilePath_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            FileInfo.Path = FilePath.Text;
+            UpdateMediaDurationText();
         }
     }
 }

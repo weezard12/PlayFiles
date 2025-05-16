@@ -172,97 +172,92 @@
         </Style>
     </UserControl.Resources>
 
-    <Border
-        Padding="0,0"
-        Background="{DynamicResource PanelBackgroundBrush}"
-        BorderBrush="{DynamicResource BorderBrush}"
-        BorderThickness="1"
-        CornerRadius="8">
-        <Grid Margin="15">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+            <TextBlock
+                FontWeight="SemiBold"
+                Style="{StaticResource ModernTextBlock}"
+                Text="Close Media:" />
 
-                <TextBlock
-                    FontWeight="SemiBold"
-                    Style="{StaticResource ModernTextBlock}"
-                    Text="Close Media:" />
+            <ComboBox
+                x:Name="CloseWhenComboBox"
+                Grid.Column="1"
+                Width="158"
+                Margin="8,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                ItemContainerStyle="{StaticResource ModernComboBoxItem}"
+                SelectedIndex="0"
+                SelectionChanged="CloseWhenComboBox_SelectionChanged"
+                Style="{StaticResource ModernComboBox}">
+                <ComboBoxItem Content="When Finished Playing" />
+                <ComboBoxItem Content="On Date" />
+                <ComboBoxItem Content="After Time" />
+                <ComboBoxItem Content="Never" />
+            </ComboBox>
+        </Grid>
 
+        <Grid
+            x:Name="TimeSelectionGrid"
+            Grid.Row="1"
+            Margin="0,12,0,0">
+            <StackPanel
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
                 <ComboBox
-                    x:Name="CloseWhenComboBox"
-                    Grid.Column="1"
-                    Width="158"
-                    Margin="8,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    x:Name="HoursComboBox"
+                    Width="60"
+                    Margin="0,0,5,0"
                     ItemContainerStyle="{StaticResource ModernComboBoxItem}"
                     SelectedIndex="0"
-                    SelectionChanged="CloseWhenComboBox_SelectionChanged"
-                    Style="{StaticResource ModernComboBox}">
-                    <ComboBoxItem Content="When Finished Playing" />
-                    <ComboBoxItem Content="On Date" />
-                    <ComboBoxItem Content="After Time" />
-                    <ComboBoxItem Content="Never" />
-                </ComboBox>
-            </Grid>
+                    Style="{StaticResource ModernComboBox}" />
 
-            <Grid
-                x:Name="TimeSelectionGrid"
-                Grid.Row="1"
-                Margin="0,12,0,0">
-                <StackPanel
-                    HorizontalAlignment="Left"
+                <TextBlock
+                    Margin="3,0"
                     VerticalAlignment="Center"
-                    Orientation="Horizontal">
-                    <ComboBox
-                        x:Name="HoursComboBox"
-                        Width="60"
-                        Margin="0,0,5,0"
-                        ItemContainerStyle="{StaticResource ModernComboBoxItem}"
-                        SelectedIndex="0"
-                        Style="{StaticResource ModernComboBox}" />
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource ForegroundBrush}"
+                    Text=":" />
 
-                    <TextBlock
-                        Margin="3,0"
-                        VerticalAlignment="Center"
-                        FontWeight="Bold"
-                        Foreground="{DynamicResource ForegroundBrush}"
-                        Text=":" />
+                <ComboBox
+                    x:Name="MinutesComboBox"
+                    Width="60"
+                    Margin="5,0"
+                    ItemContainerStyle="{StaticResource ModernComboBoxItem}"
+                    SelectedIndex="0"
+                    Style="{StaticResource ModernComboBox}" />
 
-                    <ComboBox
-                        x:Name="MinutesComboBox"
-                        Width="60"
-                        Margin="5,0"
-                        ItemContainerStyle="{StaticResource ModernComboBoxItem}"
-                        SelectedIndex="0"
-                        Style="{StaticResource ModernComboBox}" />
+                <TextBlock
+                    Margin="3,0"
+                    VerticalAlignment="Center"
+                    FontWeight="Bold"
+                    Foreground="{DynamicResource ForegroundBrush}"
+                    Text=":" />
 
-                    <TextBlock
-                        Margin="3,0"
-                        VerticalAlignment="Center"
-                        FontWeight="Bold"
-                        Foreground="{DynamicResource ForegroundBrush}"
-                        Text=":" />
-
-                    <ComboBox
-                        x:Name="SecondsComboBox"
-                        Width="60"
-                        Margin="5,0,0,0"
-                        ItemContainerStyle="{StaticResource ModernComboBoxItem}"
-                        SelectedIndex="0"
-                        Style="{StaticResource ModernComboBox}" />
-                </StackPanel>
-            </Grid>
+                <ComboBox
+                    x:Name="SecondsComboBox"
+                    Width="60"
+                    Margin="5,0,0,0"
+                    ItemContainerStyle="{StaticResource ModernComboBoxItem}"
+                    SelectedIndex="0"
+                    Style="{StaticResource ModernComboBox}" />
+            </StackPanel>
         </Grid>
-    </Border>
+    </Grid>
+
 </UserControl>

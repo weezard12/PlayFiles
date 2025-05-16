@@ -13,7 +13,7 @@ namespace PlayFiles.Logic
         public FileButton(FileInfo fileInfo)
         {
             this.fileInfo = fileInfo;
-            Content = String.Format("{0} -> {1}", fileInfo.activeTime.ToString("HH:mm:ss"), fileInfo.Name);
+            Content = String.Format("{0} -> {1}  |  {2}", fileInfo.activeTime.ToString("HH:mm:ss"), fileInfo.GetCloseTime().ToString("HH:mm:ss"), fileInfo.Name);
 
             // Set base properties
             Padding = new Thickness(12, 0, 8, 0);

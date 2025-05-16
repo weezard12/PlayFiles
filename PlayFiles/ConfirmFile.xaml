@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <Window.Resources>
-        <!-- Button Style -->
+        <!--  Button Style  -->
         <Style x:Key="RoundCornerButton" TargetType="Button">
             <Setter Property="Background" Value="#4a6fa8" />
             <Setter Property="Foreground" Value="White" />
@@ -48,7 +48,7 @@
             </Setter>
         </Style>
 
-        <!-- TextBox Style -->
+        <!--  TextBox Style  -->
         <Style x:Key="ModernTextBox" TargetType="TextBox">
             <Setter Property="Background" Value="{DynamicResource PanelBackgroundBrush}" />
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
@@ -59,21 +59,21 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
 
-        <!-- CheckBox Style -->
+        <!--  CheckBox Style  -->
         <Style x:Key="ModernCheckBox" TargetType="CheckBox">
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Margin" Value="0,4" />
         </Style>
 
-        <!-- Label Style -->
+        <!--  Label Style  -->
         <Style x:Key="ModernLabel" TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Margin" Value="0,4" />
         </Style>
 
-        <!-- TextBlock Style -->
+        <!--  TextBlock Style  -->
         <Style x:Key="ModernTextBlock" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -191,7 +191,7 @@
             </Setter>
         </Style>
 
-        <!-- ComboBoxItem Style -->
+        <!--  ComboBoxItem Style  -->
         <Style x:Key="ModernComboBoxItem" TargetType="ComboBoxItem">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}" />
@@ -226,7 +226,7 @@
             </Setter>
         </Style>
 
-        <!-- Slider Style -->
+        <!--  Slider Style  -->
         <Style x:Key="ModernSlider" TargetType="Slider">
             <Setter Property="Foreground" Value="#4a6fa8" />
             <Setter Property="Background" Value="#e0e0e0" />
@@ -312,7 +312,7 @@
             </Setter>
         </Style>
 
-        <!-- Secondary Button Style for Audio Layers -->
+        <!--  Secondary Button Style for Audio Layers  -->
         <Style
             x:Key="SecondaryButton"
             BasedOn="{StaticResource RoundCornerButton}"
@@ -369,7 +369,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <!-- File Name Section -->
+            <!--  File Name Section  -->
             <TextBlock
                 Height="18"
                 Margin="0,0,10,0"
@@ -383,7 +383,7 @@
                 Margin="72,8,0,8"
                 Style="{StaticResource ModernTextBox}" />
 
-            <!-- File Path Section -->
+            <!--  File Path Section  -->
             <TextBlock
                 x:Name="FilePathText"
                 Grid.Row="1"
@@ -400,7 +400,10 @@
                     <ColumnDefinition />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="FilePath" Style="{StaticResource ModernTextBox}" />
+                <TextBox
+                    x:Name="FilePath"
+                    Style="{StaticResource ModernTextBox}"
+                    TextChanged="FilePath_TextChanged" />
                 <Button
                     x:Name="ChangePath"
                     Grid.Column="1"
@@ -411,7 +414,7 @@
                     Style="{StaticResource RoundCornerButton}" />
             </Grid>
 
-            <!-- Time Section -->
+            <!--  Time Section  -->
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="0"
@@ -464,7 +467,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- Options Section -->
+            <!--  Options Section  -->
             <Border
                 Grid.Row="3"
                 Grid.RowSpan="3"
@@ -528,7 +531,7 @@
                             Style="{StaticResource ModernLabel}" />
                     </Grid>
 
-                    <!-- Audio Layer Control -->
+                    <!--  Audio Layer Control  -->
                     <Grid x:Name="AudioLayerGrid" Margin="20,0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -550,7 +553,7 @@
 
                     </Grid>
 
-                    <!-- Volume Control -->
+                    <!--  Volume Control  -->
                     <Grid Margin="0,8,0,4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -584,15 +587,40 @@
                 </StackPanel>
             </Border>
 
-            <!-- Close Media Control -->
-            <local:CloseMedieControl
-                x:Name="CloseMediaControl"
+            <Border
                 Grid.Row="6"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Margin="0,8,0,0" />
+                Padding="0,0"
+                Background="{DynamicResource PanelBackgroundBrush}"
+                BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="1"
+                CornerRadius="8">
+                <Grid Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock
+                        x:Name="MediaDurationText"
+                        Height="18"
+                        Margin="0,0,10,0"
+                        FontWeight="SemiBold"
+                        Style="{StaticResource ModernTextBlock}"
+                        Text="Media Original Duration: Processing File..." />
 
-            <!-- Action Buttons -->
+                    <!--  Close Media Control  -->
+                    <local:CloseMedieControl
+                        x:Name="CloseMediaControl"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,8,0,0" />
+                </Grid>
+
+            </Border>
+
+            <!--  Action Buttons  -->
             <StackPanel
                 Grid.Row="7"
                 Grid.Column="1"

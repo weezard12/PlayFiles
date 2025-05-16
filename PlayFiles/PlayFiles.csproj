@@ -21,8 +21,10 @@
 	</ItemGroup>
 	
   <ItemGroup>
+    <PackageReference Include="LibVLCSharp" Version="3.9.3" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="VideoLAN.LibVLC.Windows" Version="3.0.21" />
   </ItemGroup>
 	
   <ItemGroup>
