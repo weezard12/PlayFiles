@@ -57,25 +57,34 @@ namespace PlayFiles.Logic
 
         public static async Task<TimeSpan> GetMediaDurationAsync(string mediaPath)
         {
-            // Initialize LibVLC
-            Core.Initialize();
+            await Task.Run(() => Core.Initialize());
 
             using var libVLC = new LibVLC();
             using var media = new Media(libVLC, new Uri(mediaPath));
 
-            // Offload the parsing to a background thread
-            await Task.Run(() =>
-            {
-                media.Parse();
-                while (media.ParsedStatus != MediaParsedStatus.Done)
-                {
-                    Thread.Sleep(10);
-                }
-            });
+            var tcs = new TaskCompletionSource<TimeSpan>();
 
-            // Retrieve and return the duration
-            var durationInMilliseconds = media.Duration;
-            return TimeSpan.FromMilliseconds(durationInMilliseconds);
+            media.ParsedChanged += (sender, e) =>
+            {
+                if (e.ParsedStatus == MediaParsedStatus.Done)
+                {
+                    var duration = TimeSpan.FromMilliseconds(media.Duration);
+                    tcs.TrySetResult(duration);
+                }
+                else if (e.ParsedStatus == MediaParsedStatus.Failed)
+                {
+                    tcs.TrySetResult(TimeSpan.Zero);
+                }
+            };
+
+            // Start parsing
+            media.Parse(MediaParseOptions.ParseNetwork);
+
+            // Add timeout to prevent hanging
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
+            cts.Token.Register(() => tcs.TrySetResult(TimeSpan.Zero));
+
+            return await tcs.Task;
         }
 
     }
