@@ -103,22 +103,30 @@ namespace PlayFiles
 
         private async void UpdateMediaDurationText()
         {
-            var duration = await VlcUtils.GetMediaDurationAsync(FileInfo.Path);
-
-            if (duration == TimeSpan.Zero)
+            try
             {
+                var duration = await VlcUtils.GetMediaDurationAsync(FileInfo.Path);
+
+                if (duration == TimeSpan.Zero)
+                {
+                    Dispatcher.Invoke(() =>
+                    {
+                        MediaDurationText.Text = $"Media Original Duration: Faild to load file duration.";
+                    });
+                    return;
+                }
+
+                FileInfo.MediaDuration = duration;
                 Dispatcher.Invoke(() =>
                 {
-                    MediaDurationText.Text = $"Media Original Duration: Faild to load file duration.";
+                    MediaDurationText.Text = $"Media Original Duration: {duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
                 });
-                return;
+            }
+            catch(Exception ex)
+            {
+                MediaDurationText.Text = $"Error When Detecting Media Length: "+ ex.Message;
             }
 
-            FileInfo.MediaDuration = duration;
-            Dispatcher.Invoke(() =>
-            {
-                MediaDurationText.Text = $"Media Original Duration: {duration.Hours:D2}:{duration.Minutes:D2}:{duration.Seconds:D2}";
-            });
         }
 
         public void CancelButton_Click(object sender, RoutedEventArgs e)
