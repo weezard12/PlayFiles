@@ -9,8 +9,7 @@ The UI isn't the best, and it's because it was created at a time that I didn't k
 - [x] Supports a variety of file types by built-in integration with VLC Media Player.
 - [x] Can queue infinite media files to play.
 - [x] All of the media files selected can be edited and modified.
-- [ ] New WPF Design
-- [ ] Play filed on a date (not on a time)
+- [x] New and clean WPF Design
 - Option to keep the screen on when the app is open (disable screen power save)
 - Option to hide the mouse cursor when playing media
 - Option to stop playing the media after / at a specific time
