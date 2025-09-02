@@ -24,5 +24,10 @@ The UI isn't the best, and it's because it was created at a time that I didn't k
 2. If you selected a web / YouTube file, set the URL to the correct web URL. If a video is selected, then select your video from your local files.
 3. Set the time the media will be played.
 #
-![צילום מסך 2024-12-26 224558](https://github.com/user-attachments/assets/4ba33260-9c5f-42ea-bd62-466f5cf066bd)
-![צילום מסךa 2024-12-26 224558](https://github.com/user-attachments/assets/5bc0877d-adcf-4d2b-9395-97565fa1bed0)
+
+
+<img width="993" height="562" alt="צילום מסך 2025-09-02 201832" src="https://github.com/user-attachments/assets/602e0ca5-db0f-43d0-8d8f-4e8039c3f374" />
+<img width="993" height="561" alt="צילום מסך 2025-09-02 201923" src="https://github.com/user-attachments/assets/bce3b78b-670d-438c-a2ae-27349229e948" />
+
+<img width="990" height="560" alt="צילום מסך 2025-09-02 232514" src="https://github.com/user-attachments/assets/bd74275b-3bf9-4178-b75f-7f856749cc51" />
+<img width="990" height="559" alt="צילום מסך 2025-09-02 232707" src="https://github.com/user-attachments/assets/e1c16c99-5f86-4ed4-b53a-bec2518031eb" />
