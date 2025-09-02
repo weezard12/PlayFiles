@@ -25,8 +25,31 @@ The UI isn't the best, and it's because it was created at a time that I didn't k
 #
 
 
-<img width="993" height="562" alt="צילום מסך 2025-09-02 201832" src="https://github.com/user-attachments/assets/602e0ca5-db0f-43d0-8d8f-4e8039c3f374" />
-<img width="993" height="561" alt="צילום מסך 2025-09-02 201923" src="https://github.com/user-attachments/assets/bce3b78b-670d-438c-a2ae-27349229e948" />
+<table>
+  <tr>
+    <td>
+      <a href="https://github.com/user-attachments/assets/602e0ca5-db0f-43d0-8d8f-4e8039c3f374">
+        <img width="480" src="https://github.com/user-attachments/assets/602e0ca5-db0f-43d0-8d8f-4e8039c3f374" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/user-attachments/assets/bce3b78b-670d-438c-a2ae-27349229e948">
+        <img width="480" src="https://github.com/user-attachments/assets/bce3b78b-670d-438c-a2ae-27349229e948" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <a href="https://github.com/user-attachments/assets/bd74275b-3bf9-4178-b75f-7f856749cc51">
+        <img width="480" src="https://github.com/user-attachments/assets/bd74275b-3bf9-4178-b75f-7f856749cc51" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/user-attachments/assets/e1c16c99-5f86-4ed4-b53a-bec2518031eb">
+        <img width="480" src="https://github.com/user-attachments/assets/e1c16c99-5f86-4ed4-b53a-bec2518031eb" />
+      </a>
+    </td>
+  </tr>
+</table>
 
-<img width="990" height="560" alt="צילום מסך 2025-09-02 232514" src="https://github.com/user-attachments/assets/bd74275b-3bf9-4178-b75f-7f856749cc51" />
-<img width="990" height="559" alt="צילום מסך 2025-09-02 232707" src="https://github.com/user-attachments/assets/e1c16c99-5f86-4ed4-b53a-bec2518031eb" />
+
